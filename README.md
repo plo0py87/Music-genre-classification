@@ -28,8 +28,9 @@ MFCC 的核心目標是模擬人類聽覺系統對音色的感知。其提取過
 
 ### 距離計算數學模型
 為了衡量兩段音樂 $P$ 與 $Q$ 的相似度，我們比較了以下兩種數學度量：
-$$D_{KL}(P \parallel Q) = \frac{1}{2} \left[ \underbrace{(\mu_2 - \mu_1)^T \Sigma_2^{-1} (\mu_2 - \mu_1)}_{\text{A. 中心距離 (Mahalanobis)}} + \underbrace{\text{tr}(\Sigma_2^{-1} \Sigma_1) - k}_{\text{B. 形狀差異}} + \underbrace{\ln \left( \frac{\det \Sigma_2}{\det \Sigma_1} \right)}_{\text{C. 體積縮放}} \right]$$
-
+```math
+D_{KL}(P \parallel Q) = \frac{1}{2} \left[ \underbrace{(\mu_2 - \mu_1)^T \Sigma_2^{-1} (\mu_2 - \mu_1)}_{\text{A. 中心距離 (Mahalanobis)}} + \underbrace{\text{tr}(\Sigma_2^{-1} \Sigma_1) - k}_{\text{B. 形狀差異}} + \underbrace{\ln \left( \frac{\det \Sigma_2}{\det \Sigma_1} \right)}_{\text{C. 體積縮放}} \right]
+```
 * **Mahalanobis Distance**：僅計算項 A。衡量兩朵雲重心之間的位移，假設兩者分布形狀相同。
 * **KL Divergence**：包含 A、B、C 三項。全面捕捉音色的平均值位移、波動規律（旋轉與伸展）以及資訊不確定性的差異。
 
