@@ -1,7 +1,7 @@
-# Music Genre Classification - 學習日記
+# KNN Music Genre Classification - 學習日記
 
 ## 1. 目標 (Objective)
-* **分類任務**：使用 Python 實作音樂流派（Genre）自動分類系統。
+* **分類任務**：使用 Python 實作 KNN (K-Nearest Neighbors, K-近鄰演算法)音樂流派（Genre）自動分類系統。
 * **方法驗證**：比較不同距離度量方式（Mahalanobis Distance vs. KL Divergence）對分類精度的影響。
 * **數據洞察**：透過 PCA 視覺化檢視不同 Genre 在高維特徵空間中的分布狀態。
 
@@ -25,6 +25,10 @@ MFCC 的核心目標是模擬人類聽覺系統對音色的感知。其提取過
 * **共變異數矩陣 ($\Sigma$)**：
    * **幾何意義**：描述了雲團的胖瘦、延伸方向（各維度間的連動性）。
    * **物理意義**：代表了該流派音色的穩定度與動態變化範圍。
+### 2.3 分類決策：KNN (K-Nearest Neighbors)
+本實驗使用 KNN 作為分類器。不同於深度學習需要訓練權重，KNN 的效能完全取決於**距離度量 (Distance Metric)** 的好壞：
+* **核心邏輯**：將測試樣本放入 13 維特徵空間，尋找距離最近的 $K$ 個訓練樣本，並根據鄰居的標籤進行「投票」。
+* **實驗體會**：當我們將距離公式從項 A (Mahalanobis) 擴展到全項 (KL Divergence) 時，等於提升了 KNN 在高維空間中識別「相似鄰居」的精準度。
 
 ### 距離計算數學模型
 為了衡量兩段音樂 $P$ 與 $Q$ 的相似度，我們比較了以下兩種數學度量：
